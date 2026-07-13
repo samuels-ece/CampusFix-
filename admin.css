@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: #f4f6fa;
+  min-height: 100vh;
+}
+
+.navbar {
+  background: #1e3c72;
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h2 {
+  font-size: 18px;
+}
+
+.logout {
+  color: white;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.admin-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 6px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.stat-number {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e3c72;
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.filter-btn {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-btn.active {
+  background: #1e3c72;
+  color: white;
+  border-color: #1e3c72;
+}
+
+.complaint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.complaint-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.complaint-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.complaint-card h4 {
+  font-size: 14px;
+  color: #1e3c72;
+}
+
+.location {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.description {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.complaint-card img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.admin-controls select {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+}
+
+.admin-controls input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+}
+
+.status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-pending { background: #fff3cd; color: #856404; }
+.status-in-progress { background: #cce5ff; color: #004085; }
+.status-resolved { background: #d4edda; color: #155724; }
+
+.loading-msg,
+.empty-msg {
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  margin-top: 30px;
+}

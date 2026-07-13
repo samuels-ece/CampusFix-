@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusFix - Report Issue</title>
+  <link rel="stylesheet" href="report.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="home.html" class="back-link">←</a>
+    <h2>Report Issue</h2>
+    <div></div>
+  </header>
+
+  <main class="report-container">
+    <form id="reportForm" class="report-form">
+
+      <label for="description">Describe the issue</label>
+      <textarea id="description" rows="4" placeholder="e.g. The ceiling fan in room 204 is not spinning and makes a buzzing noise" required></textarea>
+      <p id="suggestedType" class="suggested-type"></p>
+
+      <label for="building">Building</label>
+      <select id="building" required>
+        <option value="">Select building</option>
+        <option value="Block A">Block A</option>
+        <option value="Block B">Block B</option>
+        <option value="Block C">Block C</option>
+        <option value="Hostel Block 1">Hostel Block 1</option>
+        <option value="Hostel Block 2">Hostel Block 2</option>
+        <option value="Library">Library</option>
+        <option value="Cafeteria">Cafeteria</option>
+      </select>
+
+      <label for="room">Room / Location</label>
+      <input type="text" id="room" placeholder="e.g. 204 or Main Hall" required />
+
+      <label for="photo">Add a photo (optional)</label>
+      <input type="file" id="photo" accept="image/*" capture="environment" />
+      <img id="photoPreview" class="photo-preview" style="display:none;" />
+
+      <p id="duplicateWarning" class="duplicate-warning" style="display:none;"></p>
+
+      <p id="errorMsg" class="error-msg"></p>
+      <p id="successMsg" class="success-msg"></p>
+
+      <button type="submit" id="submitBtn">Submit Report</button>
+    </form>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusFix - Home</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <h2>CampusFix</h2>
+    <div class="profile">
+      <span id="userName">Hi, Student</span>
+      <a href="#" id="logoutBtn" class="logout">Logout</a>
+    </div>
+  </header>
+
+  <main class="home-container">
+
+    <section class="welcome-card">
+      <h1>Welcome back 👋</h1>
+      <p>Report a campus issue or track your existing complaints below.</p>
+    </section>
+
+    <section class="quick-actions">
+      <a href="report.html" class="action-card report">
+        <span class="icon">📝</span>
+        <h3>Report Issue</h3>
+        <p>Log a new maintenance problem</p>
+      </a>
+
+      <a href="history.html" class="action-card history">
+        <span class="icon">📋</span>
+        <h3>My Complaints</h3>
+        <p>Track status of your reports</p>
+      </a>
+    </section>
+
+    <section class="recent-section">
+      <h2>Recent Complaints</h2>
+      <div id="recentList" class="recent-list">
+        <!-- Complaint cards will be added here later with JS/Firebase -->
+        <p class="empty-msg">No complaints reported yet.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

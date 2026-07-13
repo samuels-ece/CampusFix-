@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusFix - Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <h2>Admin Dashboard</h2>
+    <a href="#" id="logoutBtn" class="logout">Logout</a>
+  </header>
+
+  <main class="admin-container">
+
+    <section class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <span class="stat-number" id="statTotal">0</span>
+        <span class="stat-label">Total</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="statPending">0</span>
+        <span class="stat-label">Pending</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="statProgress">0</span>
+        <span class="stat-label">In Progress</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="statResolved">0</span>
+        <span class="stat-label">Resolved</span>
+      </div>
+    </section>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Pending">Pending</button>
+      <button class="filter-btn" data-filter="In Progress">In Progress</button>
+      <button class="filter-btn" data-filter="Resolved">Resolved</button>
+    </div>
+
+    <div id="complaintList" class="complaint-list">
+      <p class="loading-msg">Loading complaints...</p>
+    </div>
+
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
