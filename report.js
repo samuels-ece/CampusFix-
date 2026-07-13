@@ -134,7 +134,7 @@ reportForm.addEventListener('submit', async function (e) {
       issueType: detectedIssueType,
       building: building,
       room: room,
-      photoURL: photoURL,
+      photoURL: null,
       status: 'Pending',
       assignedTo: null,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
