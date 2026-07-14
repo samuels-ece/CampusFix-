@@ -38,6 +38,7 @@ function loadComplaints() {
     .orderBy('createdAt', 'desc')
     .get()
     .then(function (snapshot) {
+      alert('Fetched ' + snapshot.size + ' complaints');
       allComplaints = [];
       snapshot.forEach(function (doc) {
         allComplaints.push({ id: doc.id, ...doc.data() });
@@ -46,6 +47,7 @@ function loadComplaints() {
       renderComplaints();
     })
     .catch(function (error) {
+      alert('ERROR: ' + error.message);
       complaintList.innerHTML = `<p class="empty-msg">Error: ${error.message}</p>`;
     });
 }
