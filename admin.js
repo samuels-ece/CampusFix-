@@ -1,4 +1,4 @@
-// admin.js - CampusFix Admin Dashboard Logic
+  // admin.js - CampusFix Admin Dashboard Logic
 
 const complaintList = document.getElementById('complaintList');
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -23,10 +23,9 @@ auth.onAuthStateChanged(function (user) {
     return;
   }
 
-  // Confirm this user is actually an admin before showing the dashboard
   db.collection('users').doc(user.uid).get().then(function (doc) {
     if (!doc.exists || doc.data().role !== 'admin') {
-      window.location.href = 'home.html'; // not an admin, kick out
+      window.location.href = 'home.html';
       return;
     }
     loadComplaints();
@@ -38,7 +37,6 @@ function loadComplaints() {
     .orderBy('createdAt', 'desc')
     .get()
     .then(function (snapshot) {
-      alert('Fetched ' + snapshot.size + ' complaints');
       allComplaints = [];
       snapshot.forEach(function (doc) {
         allComplaints.push({ id: doc.id, ...doc.data() });
@@ -47,7 +45,6 @@ function loadComplaints() {
       renderComplaints();
     })
     .catch(function (error) {
-      alert('ERROR: ' + error.message);
       complaintList.innerHTML = `<p class="empty-msg">Error: ${error.message}</p>`;
     });
 }
@@ -94,7 +91,6 @@ function renderComplaints() {
     complaintList.appendChild(card);
   });
 
-  // Wire up status dropdowns
   document.querySelectorAll('.statusSelect').forEach(function (select) {
     select.addEventListener('change', function () {
       const id = select.dataset.id;
@@ -109,7 +105,6 @@ function renderComplaints() {
     });
   });
 
-  // Wire up assign staff inputs (save on blur / losing focus)
   document.querySelectorAll('.assignInput').forEach(function (input) {
     input.addEventListener('blur', function () {
       const id = input.dataset.id;
