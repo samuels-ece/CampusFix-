@@ -12,27 +12,26 @@ document.getElementById('logoutBtn').addEventListener('click', function (e) {
 
 auth.onAuthStateChanged(function (user) {
   if (!user) {
-    // Not logged in -> send back to login page
     window.location.href = 'index.html';
     return;
   }
 
-  // Get the user's profile info
   db.collection('users').doc(user.uid).get().then(function (doc) {
-    if (doc.exists) {
+    if (doc.exists && doc.data().name) {
       userNameEl.textContent = 'Hi, ' + doc.data().name;
+    } else {
+      userNameEl.textContent = 'Hi, Student';
     }
   });
 
-  // Get this user's most recent complaints (up to 5)
   db.collection('complaints')
     .where('userId', '==', user.uid)
     .orderBy('createdAt', 'desc')
     .limit(5)
-    .get()
-    .then(function (snapshot) {
+    .onSnapshot(function (snapshot) {
       if (snapshot.empty) {
-        return; // "No complaints reported yet." stays visible
+        recentList.innerHTML = '<p class="empty-msg">No complaints reported yet.</p>';
+        return;
       }
       recentList.innerHTML = '';
       snapshot.forEach(function (doc) {
@@ -45,8 +44,7 @@ auth.onAuthStateChanged(function (user) {
         `;
         recentList.appendChild(card);
       });
-    })
-    .catch(function (error) {
+    }, function (error) {
       console.error('Error loading complaints:', error);
     });
 });
