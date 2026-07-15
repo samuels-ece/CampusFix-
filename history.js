@@ -18,15 +18,13 @@ function loadComplaints(uid) {
   db.collection('complaints')
     .where('userId', '==', uid)
     .orderBy('createdAt', 'desc')
-    .get()
-    .then(function (snapshot) {
+    .onSnapshot(function (snapshot) {
       allComplaints = [];
       snapshot.forEach(function (doc) {
         allComplaints.push({ id: doc.id, ...doc.data() });
       });
       renderComplaints();
-    })
-    .catch(function (error) {
+    }, function (error) {
       complaintList.innerHTML = `<p class="empty-msg">Error loading complaints: ${error.message}</p>`;
     });
 }
