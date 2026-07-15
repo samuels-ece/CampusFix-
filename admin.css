@@ -177,3 +177,32 @@ body {
   font-size: 13px;
   margin-top: 30px;
 }
+.loading-msg,
+.empty-msg {
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  margin-top: 30px;
+}
+
+.priority {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.priority-low {
+  color: green;
+}
+
+.priority-medium {
+  color: #d4a000;
+}
+
+.priority-high {
+  color: orange;
+}
+
+.priority-critical {
+  color: red;
+}
