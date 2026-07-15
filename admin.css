@@ -223,3 +223,15 @@ body {
   border-color: #1e3c72;
   box-shadow: 0 0 5px rgba(30, 60, 114, 0.3);
 }
+.chart-section {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.chart-section canvas {
+  width: 100% !important;
+  max-height: 300px;
+}
