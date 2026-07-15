@@ -115,6 +115,7 @@ reportForm.addEventListener('submit', async function (e) {
   const description = descriptionEl.value.trim();
   const building = buildingEl.value;
   const room = roomEl.value.trim();
+  const priority = document.getElementById('priority').value;
   const photoFile = photoEl.files[0];
 
   if (!description || !building || !room) {
@@ -134,6 +135,7 @@ reportForm.addEventListener('submit', async function (e) {
       issueType: detectedIssueType,
       building: building,
       room: room,
+      priority: priority,
       photoURL: null,
       status: 'Pending',
       assignedTo: null,
