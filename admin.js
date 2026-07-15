@@ -55,9 +55,15 @@ function updateStats() {
 }
 
 function renderComplaints() {
-  let filtered = currentFilter === 'All'
-  ? allComplaints
-  : allComplaints.filter(c => c.status === currentFilter);
+  let filtered;
+
+if (currentFilter === 'All') {
+  filtered = allComplaints;
+} else if (['Low', 'Medium', 'High', 'Critical'].includes(currentFilter)) {
+  filtered = allComplaints.filter(c => c.priority === currentFilter);
+} else {
+  filtered = allComplaints.filter(c => c.status === currentFilter);
+}
 
 const search = searchInput.value.toLowerCase().trim();
 
