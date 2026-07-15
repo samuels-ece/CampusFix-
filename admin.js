@@ -1,4 +1,4 @@
-  // admin.js - CampusFix Admin Dashboard Logic
+// admin.js - CampusFix Admin Dashboard Logic
 
 const complaintList = document.getElementById('complaintList');
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -35,16 +35,14 @@ auth.onAuthStateChanged(function (user) {
 function loadComplaints() {
   db.collection('complaints')
     .orderBy('createdAt', 'desc')
-    .get()
-    .then(function (snapshot) {
+    .onSnapshot(function (snapshot) {
       allComplaints = [];
       snapshot.forEach(function (doc) {
         allComplaints.push({ id: doc.id, ...doc.data() });
       });
       updateStats();
       renderComplaints();
-    })
-    .catch(function (error) {
+    }, function (error) {
       complaintList.innerHTML = `<p class="empty-msg">Error: ${error.message}</p>`;
     });
 }
