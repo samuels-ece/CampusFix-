@@ -6,6 +6,8 @@ const statTotal = document.getElementById('statTotal');
 const statPending = document.getElementById('statPending');
 const statProgress = document.getElementById('statProgress');
 const statResolved = document.getElementById('statResolved');
+const chartCanvas = document.getElementById('statusChart');
+let statusChart = null;
 const searchInput = document.getElementById('searchInput');
 let allComplaints = [];
 let currentFilter = 'All';
@@ -41,6 +43,7 @@ function loadComplaints() {
         allComplaints.push({ id: doc.id, ...doc.data() });
       });
       updateStats();
+      updateChart();
       renderComplaints();
     }, function (error) {
       complaintList.innerHTML = `<p class="empty-msg">Error: ${error.message}</p>`;
@@ -53,7 +56,36 @@ function updateStats() {
   statProgress.textContent = allComplaints.filter(c => c.status === 'In Progress').length;
   statResolved.textContent = allComplaints.filter(c => c.status === 'Resolved').length;
 }
+function updateChart() {
 
+  const pending = allComplaints.filter(c => c.status === 'Pending').length;
+  const progress = allComplaints.filter(c => c.status === 'In Progress').length;
+  const resolved = allComplaints.filter(c => c.status === 'Resolved').length;
+
+  if (statusChart) {
+    statusChart.destroy();
+  }
+
+  statusChart = new Chart(chartCanvas, {
+    type: 'bar',
+    data: {
+      labels: ['Pending', 'In Progress', 'Resolved'],
+      datasets: [{
+        label: 'Complaints',
+        data: [pending, progress, resolved]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+}
 function renderComplaints() {
   let filtered;
 
