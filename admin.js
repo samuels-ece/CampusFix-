@@ -75,6 +75,12 @@ function renderComplaints() {
         <span class="status ${statusClass}">${c.status}</span>
       </div>
       <div class="location">${c.building}, Room ${c.room}</div>
+      <div class="priority">
+  Priority:
+  <span class="priority-${(c.priority || 'Low').toLowerCase()}">
+    ${c.priority || 'Low'}
+  </span>
+</div>
       <div class="description">${c.description}</div>
       ${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
       <div class="admin-controls">
