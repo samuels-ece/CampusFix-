@@ -6,7 +6,7 @@ const statTotal = document.getElementById('statTotal');
 const statPending = document.getElementById('statPending');
 const statProgress = document.getElementById('statProgress');
 const statResolved = document.getElementById('statResolved');
-
+const searchInput = document.getElementById('searchInput');
 let allComplaints = [];
 let currentFilter = 'All';
 
@@ -55,9 +55,21 @@ function updateStats() {
 }
 
 function renderComplaints() {
-  const filtered = currentFilter === 'All'
-    ? allComplaints
-    : allComplaints.filter(c => c.status === currentFilter);
+  let filtered = currentFilter === 'All'
+  ? allComplaints
+  : allComplaints.filter(c => c.status === currentFilter);
+
+const search = searchInput.value.toLowerCase().trim();
+
+if (search) {
+  filtered = filtered.filter(c =>
+    (c.complaintId || '').toLowerCase().includes(search) ||
+    (c.issueType || '').toLowerCase().includes(search) ||
+    (c.building || '').toLowerCase().includes(search) ||
+    (c.room || '').toLowerCase().includes(search) ||
+    (c.description || '').toLowerCase().includes(search)
+  );
+}
 
   if (filtered.length === 0) {
     complaintList.innerHTML = '<p class="empty-msg">No complaints found.</p>';
@@ -129,4 +141,7 @@ filterBtns.forEach(function (btn) {
     currentFilter = btn.dataset.filter;
     renderComplaints();
   });
+});
+searchInput.addEventListener('input', function () {
+  renderComplaints();
 });
