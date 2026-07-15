@@ -127,10 +127,12 @@ reportForm.addEventListener('submit', async function (e) {
   submitBtn.textContent = 'Submitting...';
 
   try {
+   const complaintId = 'CF-' + new Date().getFullYear() + '-' + Date.now();
     // Photo upload disabled for now (Storage requires billing)
 
     await db.collection('complaints').add({
       userId: currentUser.uid,
+      complaintId: complaintId,
       description: description,
       issueType: detectedIssueType,
       building: building,
