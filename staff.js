@@ -83,3 +83,31 @@ function loadComplaints(staffName){
     });
 
 }
+document.addEventListener("click", function (e) {
+
+  if (e.target.classList.contains("saveNoteBtn")) {
+
+    const id = e.target.dataset.id;
+
+    const note = e.target.parentElement
+      .querySelector(".workNote")
+      .value
+      .trim();
+
+    db.collection("complaints").doc(id).update({
+
+      workNote: note
+
+    }).then(function () {
+
+      alert("Work note saved successfully!");
+
+    }).catch(function (error) {
+
+      alert(error.message);
+
+    });
+
+  }
+
+});
