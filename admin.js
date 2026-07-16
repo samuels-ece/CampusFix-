@@ -221,25 +221,7 @@ filterBtns.forEach(function (btn) {
 searchInput.addEventListener('input', function () {
   renderComplaints();
 });
-document.addEventListener("click", function (e) {
 
-  if (e.target.classList.contains("approveBtn")) {
-
-    const id = e.target.dataset.id;
-
-    db.collection("complaints").doc(id).update({
-      status: "Resolved"
-    })
-    .then(function () {
-      alert("Complaint approved and resolved.");
-    })
-    .catch(function (error) {
-      alert(error.message);
-    });
-
-  }
-
-});
 document.addEventListener("click", function(e){
 
   if(e.target.classList.contains("approveBtn")){
