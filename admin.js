@@ -132,6 +132,14 @@ if (search) {
   </span>
 </div>
       <div class="description">${c.description}</div>
+
+${c.rating ? `
+<div class="feedback-box">
+  <strong>Student Feedback</strong><br>
+  ⭐ ${c.rating}/5<br>
+  <em>${c.feedback || 'No comment'}</em>
+</div>
+` : ''}
       ${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
       <div class="admin-controls">
         <select data-id="${c.id}" class="statusSelect">
