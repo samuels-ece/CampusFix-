@@ -56,6 +56,10 @@ function renderComplaints() {
       <div class="description">${c.description}</div>
 
 ${c.status === 'Resolved' ? `
+<button class="reopenBtn" data-id="${c.id}">
+  Reopen Complaint
+</button>
+` : ""}
 <div class="feedback-section">
 
   ${c.rating ? `
@@ -132,6 +136,29 @@ document.addEventListener('click', async function (e) {
 
   } catch (error) {
     alert(error.message);
+  }
+
+});
+document.addEventListener("click", function(e){
+
+  if(e.target.classList.contains("reopenBtn")){
+
+    const id = e.target.dataset.id;
+
+    db.collection("complaints").doc(id).update({
+      status: "Pending",
+      workNote: "",
+      assignedTo: null
+    }).then(function(){
+
+      alert("Complaint reopened successfully.");
+
+    }).catch(function(error){
+
+      alert(error.message);
+
+    });
+
   }
 
 });
