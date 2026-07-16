@@ -185,9 +185,11 @@ ${c.rating ? `
         </select>
         <select data-id="${c.id}" class="assignSelect">
   <option value="">Select Staff</option>
-  <option value="Neaman" ${c.assignedTo=="Neaman"?"selected":""}>Neaman</option>
-  <option value="Kumar" ${c.assignedTo=="Kumar"?"selected":""}>Kumar</option>
-  <option value="Priya" ${c.assignedTo=="Priya"?"selected":""}>Priya</option>
+  ${
+    staffList.map(function(name){
+      return `<option value="${name}" ${c.assignedTo===name ? "selected" : ""}>${name}</option>`;
+    }).join("")
+  }
 </select>
       </div>
     `;
