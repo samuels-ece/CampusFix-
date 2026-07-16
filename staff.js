@@ -72,6 +72,9 @@ function loadComplaints(staffName){
             <button class="saveNoteBtn" data-id="${doc.id}">
               Save Note
             </button>
+            <button class="completeBtn" data-id="${doc.id}">
+  Mark Completed
+</button>
           `;
 
           complaintList.appendChild(card);
@@ -107,6 +110,29 @@ document.addEventListener("click", function (e) {
     }).then(function () {
 
       alert("Work note saved successfully!");
+
+    }).catch(function (error) {
+
+      alert(error.message);
+
+    });
+
+  }
+
+});
+document.addEventListener("click", function (e) {
+
+  if (e.target.classList.contains("completeBtn")) {
+
+    const id = e.target.dataset.id;
+
+    db.collection("complaints").doc(id).update({
+
+      status: "Waiting for Approval"
+
+    }).then(function () {
+
+      alert("Sent to Admin for approval.");
 
     }).catch(function (error) {
 
