@@ -35,66 +35,58 @@ function loadComplaints(staffName){
     .where("assignedTo","==",staffName)
     .onSnapshot(
 
-function(snapshot){
+      function(snapshot){
 
-  alert("Complaints found: " + snapshot.size);
+        alert("Complaints found: " + snapshot.size);
 
-},
+        complaintList.innerHTML = "";
 
-function(error){
+        if(snapshot.empty){
+          complaintList.innerHTML = "<p class='loading-msg'>No complaints assigned.</p>";
+          return;
+        }
 
-  alert("Firestore Error: " + error.message);
+        snapshot.forEach(function(doc){
 
-}
+          const c = doc.data();
 
-);
-alert("Complaints found: " + snapshot.size);
-      complaintList.innerHTML="";
+          const card = document.createElement("div");
 
-      if(snapshot.empty){
-        complaintList.innerHTML="<p class='loading-msg'>No complaints assigned.</p>";
-        return;
+          card.className = "complaint-card";
+
+          card.innerHTML = `
+            <h3>${c.issueType}</h3>
+
+            <p><b>Building:</b> ${c.building}</p>
+
+            <p><b>Room:</b> ${c.room}</p>
+
+            <p><b>Priority:</b> ${c.priority}</p>
+
+            <p><b>Status:</b> ${c.status}</p>
+
+            <p>${c.description}</p>
+
+            <textarea class="workNote" data-id="${doc.id}" placeholder="Enter work completed...">${c.workNote || ""}</textarea>
+
+            <button class="saveNoteBtn" data-id="${doc.id}">
+              Save Note
+            </button>
+          `;
+
+          complaintList.appendChild(card);
+
+        });
+
+      },
+
+      function(error){
+
+        alert("Firestore Error: " + error.message);
+
       }
 
-      snapshot.forEach(function(doc){
-
-        const c=doc.data();
-
-        const card=document.createElement("div");
-
-        card.className="complaint-card";
-
-        card.innerHTML=`
-  <h3>${c.issueType}</h3>
-
-  <p><b>Building:</b> ${c.building}</p>
-
-  <p><b>Room:</b> ${c.room}</p>
-
-  <p><b>Priority:</b> ${c.priority}</p>
-
-  <p><b>Status:</b> ${c.status}</p>
-
-  <p>${c.description}</p>
-
-  <textarea
-    class="workNote"
-    data-id="${doc.id}"
-    placeholder="Enter work completed..."
-  >${c.workNote || ""}</textarea>
-
-  <button
-    class="saveNoteBtn"
-    data-id="${doc.id}">
-    Save Note
-  </button>
-`;
-
-        complaintList.appendChild(card);
-
-      });
-
-    });
+    );
 
 }
 document.addEventListener("click", function (e) {
