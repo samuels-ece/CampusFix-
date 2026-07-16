@@ -30,7 +30,7 @@ loginForm.addEventListener('submit', function (e) {
   }
 
   const role = doc.data().role;
-
+alert("Role = " + role);
   if (role === "admin") {
     window.location.href = "admin.html";
   } else if (role === "staff") {
