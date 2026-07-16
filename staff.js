@@ -33,7 +33,21 @@ function loadComplaints(staffName){
 
   db.collection("complaints")
     .where("assignedTo","==",staffName)
-    .onSnapshot(function(snapshot){
+    .onSnapshot(
+
+function(snapshot){
+
+  alert("Complaints found: " + snapshot.size);
+
+},
+
+function(error){
+
+  alert("Firestore Error: " + error.message);
+
+}
+
+);
 alert("Complaints found: " + snapshot.size);
       complaintList.innerHTML="";
 
