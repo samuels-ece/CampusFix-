@@ -11,6 +11,7 @@ let statusChart = null;
 const searchInput = document.getElementById('searchInput');
 let allComplaints = [];
 let currentFilter = 'All';
+let staffList = [];
 
 document.getElementById('logoutBtn').addEventListener('click', function (e) {
   e.preventDefault();
@@ -30,7 +31,27 @@ auth.onAuthStateChanged(function (user) {
       window.location.href = 'home.html';
       return;
     }
-    loadComplaints();
+    loadStaff();
+    function loadStaff() {
+
+  db.collection("users")
+    .where("role", "==", "staff")
+    .onSnapshot(function(snapshot){
+
+      staffList = [];
+
+      snapshot.forEach(function(doc){
+
+        staffList.push(doc.data().name);
+
+      });
+
+      renderComplaints();
+
+    });
+
+    }
+loadComplaints();
   });
 });
 
