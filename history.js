@@ -51,7 +51,40 @@ function renderComplaints() {
       </div>
       <div class="location">${c.building}, Room ${c.room}</div>
       <div class="description">${c.description}</div>
-      ${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
+
+${c.status === 'Resolved' ? `
+<div class="feedback-section">
+
+  ${c.rating ? `
+    <p><strong>Your Rating:</strong> ⭐ ${c.rating}/5</p>
+    <p>${c.feedback || ''}</p>
+  ` : `
+    <label>Rate our service</label>
+
+    <select class="ratingSelect" data-id="${c.id}">
+      <option value="">Select Rating</option>
+      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+      <option value="4">⭐⭐⭐⭐ Very Good</option>
+      <option value="3">⭐⭐⭐ Good</option>
+      <option value="2">⭐⭐ Fair</option>
+      <option value="1">⭐ Poor</option>
+    </select>
+
+    <textarea
+      class="feedbackText"
+      data-id="${c.id}"
+      placeholder="Write your feedback..."
+    ></textarea>
+
+    <button class="feedbackBtn" data-id="${c.id}">
+      Submit Feedback
+    </button>
+  `}
+
+</div>
+` : ''}
+
+${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
     `;
     complaintList.appendChild(card);
   });
@@ -64,4 +97,38 @@ filterBtns.forEach(function (btn) {
     currentFilter = btn.dataset.filter;
     renderComplaints();
   });
+});
+document.addEventListener('click', async function (e) {
+
+  if (!e.target.classList.contains('feedbackBtn')) return;
+
+  const id = e.target.dataset.id;
+
+  const rating = document.querySelector(
+    `.ratingSelect[data-id="${id}"]`
+  ).value;
+
+  const feedback = document.querySelector(
+    `.feedbackText[data-id="${id}"]`
+  ).value.trim();
+
+  if (!rating) {
+    alert("Please select a rating.");
+    return;
+  }
+
+  try {
+
+    await db.collection('complaints').doc(id).update({
+      rating: Number(rating),
+      feedback: feedback,
+      feedbackDate: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    alert("Thank you for your feedback!");
+
+  } catch (error) {
+    alert(error.message);
+  }
+
 });
