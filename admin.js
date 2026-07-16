@@ -132,7 +132,12 @@ if (search) {
   </span>
 </div>
       <div class="description">${c.description}</div>
-
+${c.workNote ? `
+<div class="work-note">
+  <b>Staff Work Note:</b><br>
+  ${c.workNote}
+</div>
+` : ""}
 ${c.rating ? `
 <div class="feedback-box">
   <strong>Student Feedback</strong><br>
