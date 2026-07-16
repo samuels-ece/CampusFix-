@@ -186,17 +186,28 @@ ${c.rating ? `
     });
   });
 
-  document.querySelectorAll('.assignInput').forEach(function (input) {
-    input.addEventListener('blur', function () {
-      const id = input.dataset.id;
-      const staffName = input.value.trim();
-      db.collection('complaints').doc(id).update({ assignedTo: staffName || null })
-        .then(function () {
-          const complaint = allComplaints.find(c => c.id === id);
-          if (complaint) complaint.assignedTo = staffName || null;
-        });
+  document.querySelectorAll('.assignSelect').forEach(function (select) {
+
+  select.addEventListener('change', function () {
+
+    const id = select.dataset.id;
+    const staffName = select.value;
+
+    db.collection('complaints').doc(id).update({
+      assignedTo: staffName || null
+    }).then(function () {
+
+      const complaint = allComplaints.find(c => c.id === id);
+
+      if (complaint) {
+        complaint.assignedTo = staffName || null;
+      }
+
     });
+
   });
+
+});
 }
 
 filterBtns.forEach(function (btn) {
