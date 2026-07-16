@@ -196,11 +196,4 @@ filterBtns.forEach(function (btn) {
 searchInput.addEventListener('input', function () {
   renderComplaints();
 });
-<div class="description">${c.description}</div>
 
-${c.workNote ? `
-<div class="work-note">
-  <b>Staff Work Note:</b><br>
-  ${c.workNote}
-</div>
-` : ""}
