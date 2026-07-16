@@ -32,7 +32,11 @@ auth.onAuthStateChanged(function (user) {
       return;
     }
     loadStaff();
-    function loadStaff() {
+    
+loadComplaints();
+  });
+});
+function loadStaff() {
 
   db.collection("users")
     .where("role", "==", "staff")
@@ -50,12 +54,9 @@ auth.onAuthStateChanged(function (user) {
 
     });
 
-    }
-loadComplaints();
-  });
-});
-
+}
 function loadComplaints() {
+
   db.collection('complaints')
     .orderBy('createdAt', 'desc')
     .onSnapshot(function (snapshot) {
