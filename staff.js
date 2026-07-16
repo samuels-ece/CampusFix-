@@ -22,7 +22,7 @@ auth.onAuthStateChanged(function (user) {
     }
 
     const staffName = doc.data().name;
-
+alert("Staff Name = " + staffName);
     loadComplaints(staffName);
 
   });
@@ -34,7 +34,7 @@ function loadComplaints(staffName){
   db.collection("complaints")
     .where("assignedTo","==",staffName)
     .onSnapshot(function(snapshot){
-
+alert("Complaints found: " + snapshot.size);
       complaintList.innerHTML="";
 
       if(snapshot.empty){
