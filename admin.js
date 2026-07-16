@@ -125,6 +125,9 @@ if (search) {
         <span class="status ${statusClass}">${c.status}</span>
       </div>
       <div class="location">${c.building}, Room ${c.room}</div>
+     <div class="complaint-id">
+  <b>Complaint ID:</b> ${c.complaintId}
+</div>
       <div class="priority">
   Priority:
   <span class="priority-${(c.priority || 'Low').toLowerCase()}">
