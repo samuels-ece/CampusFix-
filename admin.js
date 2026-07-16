@@ -149,11 +149,17 @@ ${c.rating ? `
 </div>
 ` : ''}
       ${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
+     ${c.status === "Waiting for Approval" ? `
+<button class="approveBtn" data-id="${c.id}">
+  ✅ Approve & Resolve
+</button>
+` : ""}
       <div class="admin-controls">
         <select data-id="${c.id}" class="statusSelect">
           <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
-          <option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
-          <option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+<option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+<option value="Waiting for Approval" ${c.status === 'Waiting for Approval' ? 'selected' : ''}>Waiting for Approval</option>
+<option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
         </select>
         <input type="text" data-id="${c.id}" class="assignInput" placeholder="Assign staff name" value="${c.assignedTo || ''}" />
       </div>
@@ -199,4 +205,26 @@ filterBtns.forEach(function (btn) {
 searchInput.addEventListener('input', function () {
   renderComplaints();
 });
+document.addEventListener("click", function(e){
 
+  if(e.target.classList.contains("approveBtn")){
+
+    const id = e.target.dataset.id;
+
+    db.collection("complaints").doc(id).update({
+
+      status: "Resolved"
+
+    }).then(function(){
+
+      alert("Complaint approved and resolved.");
+
+    }).catch(function(error){
+
+      alert(error.message);
+
+    });
+
+  }
+
+});
