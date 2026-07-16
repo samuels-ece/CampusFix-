@@ -161,7 +161,12 @@ ${c.rating ? `
 <option value="Waiting for Approval" ${c.status === 'Waiting for Approval' ? 'selected' : ''}>Waiting for Approval</option>
 <option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
         </select>
-        <input type="text" data-id="${c.id}" class="assignInput" placeholder="Assign staff name" value="${c.assignedTo || ''}" />
+        <select data-id="${c.id}" class="assignSelect">
+  <option value="">Select Staff</option>
+  <option value="Neaman" ${c.assignedTo=="Neaman"?"selected":""}>Neaman</option>
+  <option value="Kumar" ${c.assignedTo=="Kumar"?"selected":""}>Kumar</option>
+  <option value="Priya" ${c.assignedTo=="Priya"?"selected":""}>Priya</option>
+</select>
       </div>
     `;
     complaintList.appendChild(card);
