@@ -58,7 +58,7 @@ function loadComplaints(staffName){
             <h3>${c.issueType}</h3>
 
             <p><b>Building:</b> ${c.building}</p>
-
+             <p><b>Complaint ID:</b> ${c.complaintId}</p>
             <p><b>Room:</b> ${c.room}</p>
 
             <p><b>Priority:</b> ${c.priority}</p>
