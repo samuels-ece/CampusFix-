@@ -50,6 +50,9 @@ function renderComplaints() {
         <span class="status ${statusClass}">${c.status}</span>
       </div>
       <div class="location">${c.building}, Room ${c.room}</div>
+    <div class="complaint-id">
+  <b>Complaint ID:</b> ${c.complaintId}
+</div>
       <div class="description">${c.description}</div>
 
 ${c.status === 'Resolved' ? `
