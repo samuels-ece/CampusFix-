@@ -23,12 +23,23 @@ loginForm.addEventListener('submit', function (e) {
       return db.collection('users').doc(uid).get();
     })
     .then(function (doc) {
-      if (doc.exists && doc.data().role === 'admin') {
-        window.location.href = 'admin.html';
-      } else {
-        window.location.href = 'home.html';
-      }
-    })
+
+  if (!doc.exists) {
+    errorMsg.textContent = "User profile not found.";
+    return;
+  }
+
+  const role = doc.data().role;
+
+  if (role === "admin") {
+    window.location.href = "admin.html";
+  } else if (role === "staff") {
+    window.location.href = "staff.html";
+  } else {
+    window.location.href = "home.html";
+  }
+
+})
     .catch(function (error) {
       errorMsg.textContent = error.message;
     });
