@@ -247,3 +247,41 @@ document.addEventListener("click", function(e){
   }
 
 });
+document.getElementById("exportPdfBtn").addEventListener("click", function () {
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+
+  pdf.setFontSize(18);
+  pdf.text("CampusFix Complaint Report", 20, 20);
+
+  let y = 35;
+
+  allComplaints.forEach(function(c, index){
+
+    pdf.setFontSize(11);
+
+    pdf.text(
+      `${index + 1}. ${c.complaintId || "N/A"}`,
+      20,
+      y
+    );
+
+    pdf.text(`Issue: ${c.issueType}`,20,y+8);
+    pdf.text(`Building: ${c.building}`,20,y+16);
+    pdf.text(`Room: ${c.room}`,20,y+24);
+    pdf.text(`Priority: ${c.priority}`,20,y+32);
+    pdf.text(`Status: ${c.status}`,20,y+40);
+
+    y += 55;
+
+    if(y > 260){
+      pdf.addPage();
+      y = 20;
+    }
+
+  });
+
+  pdf.save("CampusFix_Report.pdf");
+
+});
