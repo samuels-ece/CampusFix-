@@ -235,3 +235,19 @@ body {
   width: 100% !important;
   max-height: 300px;
 }
+.feedback-box {
+  margin-top: 12px;
+  padding: 10px;
+  background: #f8f9ff;
+  border-left: 4px solid #1e3c72;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.feedback-box strong {
+  color: #1e3c72;
+}
+
+.feedback-box em {
+  color: #555;
+}
