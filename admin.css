@@ -268,3 +268,38 @@ body {
   font-size: 13px;
   color: #333;
 }
+/* Dark Mode */
+.dark {
+  background: #121212;
+  color: white;
+}
+
+.dark .navbar {
+  background: #000;
+}
+
+.dark .welcome-card,
+.dark .action-card,
+.dark .recent-list,
+.dark .complaint-card,
+.dark .stats-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark p,
+.dark span,
+.dark div {
+  color: white;
+}
+
+#themeBtn {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
