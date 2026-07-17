@@ -60,6 +60,7 @@ ${c.status === 'Resolved' ? `
   Reopen Complaint
 </button>
 ` : ""}
+${c.status === 'Resolved' ? `
 <div class="feedback-section">
 
   ${c.rating ? `
@@ -77,11 +78,7 @@ ${c.status === 'Resolved' ? `
       <option value="1">⭐ Poor</option>
     </select>
 
-    <textarea
-      class="feedbackText"
-      data-id="${c.id}"
-      placeholder="Write your feedback..."
-    ></textarea>
+    <textarea class="feedbackText" data-id="${c.id}" placeholder="Write your feedback..."></textarea>
 
     <button class="feedbackBtn" data-id="${c.id}">
       Submit Feedback
@@ -92,6 +89,7 @@ ${c.status === 'Resolved' ? `
 ` : ''}
 
 ${c.photoURL ? `<img src="${c.photoURL}" alt="Issue photo" />` : ''}
+
     `;
     complaintList.appendChild(card);
   });
